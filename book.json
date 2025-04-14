@@ -1,0 +1,9 @@
+{
+  "title": "Computer Science",
+  "author": "KilluaDev",
+  "language": "zh-hans",
+  "structure": {
+    "readme": "README.md",
+    "summary": "SUMMARY.md"
+  }
+} 
