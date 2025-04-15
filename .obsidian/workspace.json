@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "计网/物理层.md",
+                "file": "SUMMARY.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "物理层"
+              "title": "SUMMARY"
             }
           }
         ]
@@ -170,11 +170,12 @@
   },
   "active": "acb391733599d7a2",
   "lastOpenFiles": [
-    "计网/数据链路层.md",
-    "计网/物理层.md",
-    "计网/运输层.md",
     "计网/网络层.md",
     "SUMMARY.md",
+    "计网/基础.md",
+    "计网/物理层.md",
+    "计网/数据链路层.md",
+    "计网/运输层.md",
     "网络安全工程",
     "嵌入式系统",
     "现代密码学",
