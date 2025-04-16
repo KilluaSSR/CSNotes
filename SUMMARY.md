@@ -22,7 +22,10 @@
 * [Hello World!](README.md)
 ## 嵌入式系统
 
-* [Hello World!](README.md)
+* [基础](嵌入式系统/基础.md)
+* * [多任务、调度与通信](嵌入式系统/多任务、调度与通信.md)
+
 ## 现代密码学
 
 * [Hello World!](README.md)
+
