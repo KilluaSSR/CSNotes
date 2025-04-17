@@ -2,6 +2,15 @@
 
 * [Hello World!](README.md)
 
+## 地球人都能看懂的计算机基础知识
+
+* [外星人也能](计算机基础知识/nothing.md)
+* [汇编语言](计算机基础知识/汇编语言.md)
+
+## Leetcode小记
+
+* [Hello World!](README.md) 
+
 ## 计算机网络
 
 * [基础](计网/基础.md)
