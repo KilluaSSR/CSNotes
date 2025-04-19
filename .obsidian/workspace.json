@@ -170,11 +170,11 @@
   },
   "active": "eb7877bd46e5b14b",
   "lastOpenFiles": [
-    "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
+    "操作系统/进程间通信.md",
     "SUMMARY.md",
+    "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
     "嵌入式系统/单片机_DSP_ARM_CPLD_FPGA.md",
     "嵌入式系统/单片机、DSP、ARM、CPLD、FPGA.md",
-    "操作系统/进程间通信.md",
     "操作系统/IO.md",
     "操作系统/安全机制与访问控制.md",
     "操作系统/崩溃一致性.md",
