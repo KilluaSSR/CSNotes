@@ -7,6 +7,9 @@
 * [外星人也能](计算机基础知识/nothing.md)
 * [汇编语言](计算机基础知识/汇编语言.md)
 
+## 操作系统
+
+* [进程间通信](操作系统/进程间通信.md)
 ## Leetcode小记
 
 * [Hello World!](README.md) 
@@ -23,15 +26,14 @@
 ## 编译原理
 
 * [Hello World!](README.md)  
-## 操作系统
 
-* [Hello World!](README.md)
 ## 计算机组成原理
 
 * [Hello World!](README.md)
 ## 嵌入式系统
 
 * [基础](嵌入式系统/基础.md)
+* [单片机、DSP、CPLD、FPGA](单片机_DSP_CPLD_FPGA.md)
 * [多任务、调度与通信](嵌入式系统/多任务_调度与通信.md)
 
 ## 现代密码学
