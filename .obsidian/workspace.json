@@ -4,21 +4,49 @@
     "type": "split",
     "children": [
       {
-        "id": "02c046303f11dc18",
+        "id": "a9142463624c2dff",
         "type": "tabs",
         "children": [
           {
-            "id": "eb7877bd46e5b14b",
+            "id": "4f0c293952a47480",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "操作系统/进程与线程.md",
+                "file": "嵌入式系统/多任务_调度与通信.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "进程与线程"
+              "title": "多任务_调度与通信"
+            }
+          },
+          {
+            "id": "b63f813d4db9133c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "操作系统/换页策略.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "换页策略"
+            }
+          },
+          {
+            "id": "66ebfec373fcf35d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "操作系统/进程间通信.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "进程间通信"
             }
           }
         ]
@@ -168,16 +196,18 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "eb7877bd46e5b14b",
+  "active": "4f0c293952a47480",
   "lastOpenFiles": [
-    "SUMMARY.md",
     "操作系统/换页策略.md",
+    "嵌入式系统/多任务_调度与通信.md",
     "操作系统/进程间通信.md",
+    "嵌入式系统/基础.md",
+    "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
+    "SUMMARY.md",
     "操作系统/进程与线程.md",
     "计算机基础知识/汇编语言.md",
     "操作系统/设备与驱动.md",
     "操作系统/工作集模型.md",
-    "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
     "嵌入式系统/单片机_DSP_ARM_CPLD_FPGA.md",
     "嵌入式系统/单片机、DSP、ARM、CPLD、FPGA.md",
     "操作系统/IO.md",
@@ -194,8 +224,6 @@
     "操作系统/System Call.md",
     "操作系统/异常向量表.md",
     "操作系统/BIOS.md",
-    "操作系统/虚拟内存.md",
-    "操作系统/虚拟化.md",
     "assets/Pasted image 20250419063402.png",
     "assets/Pasted image 20250419061029.png",
     "assets/Pasted image 20250419064613.png",
