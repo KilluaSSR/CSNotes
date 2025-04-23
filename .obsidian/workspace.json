@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "嵌入式系统/Quiz.md",
+                "file": "HelloWorld.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Quiz"
+              "title": "HelloWorld"
             }
           },
           {
@@ -213,8 +213,8 @@
   },
   "active": "b63f813d4db9133c",
   "lastOpenFiles": [
-    "嵌入式系统/多任务_调度与通信.md",
     "嵌入式系统/Quiz.md",
+    "嵌入式系统/多任务_调度与通信.md",
     "操作系统/进程间通信.md",
     "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
     "嵌入式系统/基础.md",
