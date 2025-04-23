@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "操作系统/进程与线程.md",
+                "file": "操作系统/SeLinux.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "进程与线程"
+              "title": "SeLinux"
             }
           }
         ]
@@ -94,17 +94,17 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "欢迎.md",
+                "file": "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "欢迎 的反向链接列表"
+              "title": "单片机_DSP_CPLD_FPGA 的反向链接列表"
             }
           },
           {
@@ -170,14 +170,20 @@
   },
   "active": "eb7877bd46e5b14b",
   "lastOpenFiles": [
+    "操作系统/信道.md",
+    "README.md",
     "SUMMARY.md",
+    "嵌入式系统/多任务_调度与通信.md",
+    "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
     "操作系统/换页策略.md",
-    "操作系统/进程间通信.md",
+    "操作系统/同步原语.md",
+    "操作系统/同步.md",
+    "嵌入式系统/基础.md",
     "操作系统/进程与线程.md",
+    "操作系统/进程间通信.md",
     "计算机基础知识/汇编语言.md",
     "操作系统/设备与驱动.md",
     "操作系统/工作集模型.md",
-    "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
     "嵌入式系统/单片机_DSP_ARM_CPLD_FPGA.md",
     "嵌入式系统/单片机、DSP、ARM、CPLD、FPGA.md",
     "操作系统/IO.md",
@@ -185,17 +191,11 @@
     "操作系统/崩溃一致性.md",
     "操作系统/信号量.md",
     "操作系统/锁.md",
-    "操作系统/同步.md",
-    "操作系统/信道.md",
     "操作系统/Rootkit.md",
     "操作系统/SeLinux.md",
     "操作系统/日志系统.md",
     "操作系统/页表初始化.md",
     "操作系统/System Call.md",
-    "操作系统/异常向量表.md",
-    "操作系统/BIOS.md",
-    "操作系统/虚拟内存.md",
-    "操作系统/虚拟化.md",
     "assets/Pasted image 20250419063402.png",
     "assets/Pasted image 20250419061029.png",
     "assets/Pasted image 20250419064613.png",
