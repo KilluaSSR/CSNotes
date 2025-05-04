@@ -4,21 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "a9142463624c2dff",
+        "id": "0a91acebb59992d5",
         "type": "tabs",
         "children": [
           {
-            "id": "b63f813d4db9133c",
+            "id": "44d882078b3cdc1c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "计算机基础知识/栈溢出.md",
+                "file": "网络安全/XSS漏洞攻击.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "栈溢出"
+              "title": "XSS漏洞攻击"
+            }
+          },
+          {
+            "id": "0e95310f3270f32c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "网络安全/Linux提权.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux提权"
             }
           }
         ]
@@ -168,9 +182,28 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b63f813d4db9133c",
+  "active": "44d882078b3cdc1c",
   "lastOpenFiles": [
+    "计算机基础知识/Active Directory.md",
+    "网络安全/XSS漏洞攻击.md",
+    "计算机基础知识/Linux下的常见常用命令.md",
+    "网络安全/SQL注入.md",
+    "网络安全/Linux提权.md",
     "计算机基础知识/汇编语言.md",
+    "计算机基础知识/栈溢出.md",
+    "计算机基础知识/恶意软件的静态与动态分析.md",
+    "网络安全/Wifi渗透测试.md",
+    "网络安全/WordPress.md",
+    "操作系统/进程与线程.md",
+    "操作系统/设备与驱动.md",
+    "操作系统/虚拟内存.md",
+    "操作系统/虚拟化.md",
+    "操作系统/消息队列.md",
+    "操作系统/日志系统.md",
+    "操作系统/文件系统.md",
+    "操作系统/换页策略.md",
+    "操作系统/信号量.md",
+    "网络安全",
     "HelloWorld.md",
     "嵌入式系统/Quiz.md",
     "SUMMARY.md",
@@ -178,23 +211,6 @@
     "操作系统/进程间通信.md",
     "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
     "嵌入式系统/基础.md",
-    "操作系统/换页策略.md",
-    "操作系统/进程与线程.md",
-    "操作系统/进程间通信.md",
-    "操作系统/设备与驱动.md",
-    "操作系统/工作集模型.md",
-    "嵌入式系统/单片机_DSP_ARM_CPLD_FPGA.md",
-    "嵌入式系统/单片机、DSP、ARM、CPLD、FPGA.md",
-    "操作系统/IO.md",
-    "操作系统/安全机制与访问控制.md",
-    "操作系统/崩溃一致性.md",
-    "操作系统/信号量.md",
-    "操作系统/锁.md",
-    "操作系统/Rootkit.md",
-    "操作系统/SeLinux.md",
-    "操作系统/日志系统.md",
-    "操作系统/页表初始化.md",
-    "操作系统/System Call.md",
     "assets/Pasted image 20250419063402.png",
     "assets/Pasted image 20250419061029.png",
     "assets/Pasted image 20250419064613.png",
@@ -207,7 +223,6 @@
     "嵌入式系统",
     "现代密码学",
     "操作系统",
-    "计算机组成原理",
-    "编译原理"
+    "计算机组成原理"
   ]
 }
