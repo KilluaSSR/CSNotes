@@ -27,15 +27,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "网络安全/Linux提权.md",
+                "file": "SUMMARY.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linux提权"
+              "title": "SUMMARY"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -182,18 +183,24 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "44d882078b3cdc1c",
+  "active": "0e95310f3270f32c",
   "lastOpenFiles": [
-    "计算机基础知识/Active Directory.md",
-    "网络安全/XSS漏洞攻击.md",
-    "计算机基础知识/Linux下的常见常用命令.md",
-    "网络安全/SQL注入.md",
+    "README.md",
     "网络安全/Linux提权.md",
-    "计算机基础知识/汇编语言.md",
-    "计算机基础知识/栈溢出.md",
-    "计算机基础知识/恶意软件的静态与动态分析.md",
-    "网络安全/Wifi渗透测试.md",
+    "网络安全/XSS漏洞攻击.md",
     "网络安全/WordPress.md",
+    "SUMMARY.md",
+    "网络安全/SQL注入.md",
+    "计算机基础知识/栈溢出.md",
+    "网络安全/Python在线执行代码绕过安全限制.md",
+    "计算机基础知识/Active Directory.md",
+    "计算机基础知识/汇编语言.md",
+    "计算机基础知识/恶意软件的静态与动态分析.md",
+    "计算机基础知识/Linux下的常见常用命令.md",
+    "网络安全/Wifi渗透测试.md",
+    "assets/Pasted image 20250505001734.png",
+    "assets/Pasted image 20250505001523.png",
+    "assets/Pasted image 20250505001402.png",
     "操作系统/进程与线程.md",
     "操作系统/设备与驱动.md",
     "操作系统/虚拟内存.md",
@@ -206,11 +213,8 @@
     "网络安全",
     "HelloWorld.md",
     "嵌入式系统/Quiz.md",
-    "SUMMARY.md",
     "嵌入式系统/多任务_调度与通信.md",
     "操作系统/进程间通信.md",
-    "嵌入式系统/单片机_DSP_CPLD_FPGA.md",
-    "嵌入式系统/基础.md",
     "assets/Pasted image 20250419063402.png",
     "assets/Pasted image 20250419061029.png",
     "assets/Pasted image 20250419064613.png",
