@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "0a91acebb59992d5",
+        "id": "3d27a516b69dbe4e",
         "type": "tabs",
         "children": [
           {
-            "id": "44d882078b3cdc1c",
+            "id": "33e2a8547edaac1e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "网络安全/XSS漏洞攻击.md",
+                "file": "计算机基础知识/x64dbg基础.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "XSS漏洞攻击"
-            }
-          },
-          {
-            "id": "0e95310f3270f32c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SUMMARY.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "SUMMARY"
+              "title": "x64dbg基础"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -59,7 +44,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "文件列表"
             }
           },
           {
@@ -175,50 +160,52 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "0e95310f3270f32c",
+  "active": "33e2a8547edaac1e",
   "lastOpenFiles": [
-    "README.md",
-    "网络安全/Linux提权.md",
-    "网络安全/XSS漏洞攻击.md",
-    "网络安全/WordPress.md",
-    "SUMMARY.md",
-    "网络安全/SQL注入.md",
-    "计算机基础知识/栈溢出.md",
-    "网络安全/Python在线执行代码绕过安全限制.md",
+    "计算机基础知识/IDA基础.md",
     "计算机基础知识/Active Directory.md",
-    "计算机基础知识/汇编语言.md",
-    "计算机基础知识/恶意软件的静态与动态分析.md",
+    "assets/Pasted image 20250507080317.png",
+    "网络安全/Yara和Sigma规则.md",
+    "assets/Pasted image 20250507080312.png",
+    "assets/Pasted image 20250507080309.png",
+    "assets/Pasted image 20250507080304.png",
+    "计算机基础知识/x64dbg基础.md",
+    "assets/Pasted image 20250507071511.png",
+    "assets/Pasted image 20250507071423.png",
+    "assets/Pasted image 20250507071337.png",
+    "assets/Pasted image 20250507071014.png",
+    "assets/Pasted image 20250507070639.png",
+    "assets/Pasted image 20250507070424.png",
+    "SUMMARY.md",
+    "README.md",
     "计算机基础知识/Linux下的常见常用命令.md",
+    "网络安全/XSS漏洞攻击.md",
+    "网络安全/SQL注入.md",
     "网络安全/Wifi渗透测试.md",
-    "assets/Pasted image 20250505001734.png",
-    "assets/Pasted image 20250505001523.png",
-    "assets/Pasted image 20250505001402.png",
+    "计网/基础.md",
+    "计网/数据链路层.md",
+    "计网/运输层.md",
+    "计网/网络层.md",
+    "计网/物理层.md",
+    "嵌入式系统/多任务_调度与通信.md",
+    "嵌入式系统/基础.md",
+    "计算机基础知识/恶意软件的简单分析.md",
+    "计算机基础知识/汇编语言.md",
+    "计算机基础知识/栈溢出.md",
+    "网络安全/Linux提权.md",
+    "网络安全/Python在线执行代码绕过安全限制.md",
+    "网络安全/WordPress.md",
     "操作系统/进程与线程.md",
     "操作系统/设备与驱动.md",
-    "操作系统/虚拟内存.md",
-    "操作系统/虚拟化.md",
-    "操作系统/消息队列.md",
-    "操作系统/日志系统.md",
-    "操作系统/文件系统.md",
-    "操作系统/换页策略.md",
-    "操作系统/信号量.md",
     "网络安全",
-    "HelloWorld.md",
-    "嵌入式系统/Quiz.md",
-    "嵌入式系统/多任务_调度与通信.md",
-    "操作系统/进程间通信.md",
-    "assets/Pasted image 20250419063402.png",
-    "assets/Pasted image 20250419061029.png",
-    "assets/Pasted image 20250419064613.png",
-    "Pasted image 20250419061201.png",
     "assets",
     "New folder",
     "计算机基础知识/demonstration/helloworld.c~",
