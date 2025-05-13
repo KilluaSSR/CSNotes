@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "2b85d3a939cdb2c7",
+        "id": "2e47bdcff583cda2",
         "type": "tabs",
         "children": [
           {
-            "id": "7fbda5701795a60a",
+            "id": "9273eef101d1b40b",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "assets/Pasted image 20250509005025.png"
+                "file": "网络安全/Wifi渗透测试.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20250509005025"
+              "icon": "lucide-file",
+              "title": "Wifi渗透测试"
             }
           }
         ]
@@ -42,7 +44,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "文件列表"
             }
           },
           {
@@ -158,16 +160,20 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "45ae99af6b35c267",
+  "active": "9273eef101d1b40b",
   "lastOpenFiles": [
+    "Pasted image 20250514013303.png",
+    "Pasted image 20250514013224.png",
+    "网络安全/WordPress.md",
+    "assets/Pasted image 20250509005025.png",
     "网络安全/Wifi渗透测试.md",
     "网络安全/Python在线执行代码绕过安全限制.md",
     "计算机基础知识/恶意软件的简单分析.md",
@@ -175,7 +181,6 @@
     "计算机基础知识/Linux下的常见常用命令.md",
     "计算机基础知识/x64dbg基础.md",
     "计算机基础知识/IDA基础.md",
-    "assets/Pasted image 20250509005025.png",
     "assets/Pasted image 20250509005018.png",
     "assets/Pasted image 20250509005002.png",
     "assets/Pasted image 20250509004958.png",
@@ -184,7 +189,6 @@
     "assets/Pasted image 20250509004947.png",
     "assets/Pasted image 20250509004942.png",
     "assets/Pasted image 20250509003913.png",
-    "assets/Pasted image 20250509003906.png",
     "网络安全/HashCat的使用.md",
     "操作系统/SeLinux.md",
     "计算机基础知识/Active Directory.md",
@@ -202,7 +206,6 @@
     "嵌入式系统/基础.md",
     "计算机基础知识/汇编语言.md",
     "计算机基础知识/栈溢出.md",
-    "网络安全/Linux提权.md",
     "网络安全",
     "assets",
     "New folder",
