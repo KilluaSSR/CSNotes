@@ -56,3 +56,30 @@
 
 * [Hello World!](HelloWorld.md)
 
+## Some面试题
+
+* [数据结构](Some面试题/数据结构.md)
+* [Socket](Some面试题/Socket.md)
+* [网络协议](Some面试题/网络协议.md)
+
+### Android
+* [基础](Some面试题/Android/基础.md)
+* [Activity的启动流程](Some面试题/Android/Activity的启动流程.md)
+* [ANR](Some面试题/Android/ANR.md)
+* [Handler](Some面试题/Android/Handler.md)
+* [Kotlin](Some面试题/Android/Kotlin.md)
+* [MVVM](Some面试题/Android/MVVM.md)
+* [内存泄漏](Some面试题/Android/内存泄漏.md)
+* [数据流](Some面试题/Android/数据流.md)
+
+### 操作系统
+* [进程与线程](Some面试题/操作系统/进程与线程.md)
+* [文件系统](Some面试题/操作系统/文件系统.md)
+
+### 数据库
+* [MySQL](Some面试题/数据库/MySQL.md)
+* [Redis](Some面试题/数据库/Redis.md)
+
+### 模拟
+* [模拟1](Some面试题/模拟/模拟1.md)
+* [模拟2](Some面试题/模拟/模拟2.md)
