@@ -66,6 +66,8 @@
     * [断点续传与文件完整性](Some面试题/网络编程/断点续传与下载文件完整.md)
     * [输入URL到页面显示](Some面试题/网络编程/输入URL到浏览器到显示页面.md)
 * [Android](Some面试题/Android/README.md)
+    * [Framework](Some面试题/Android/Framework/Framework.md)
+        * [系统架构](Some面试题/Android/Framework/系统架构.md)
     * [基础](Some面试题/Android/基础.md)
     * [Activity的启动流程](Some面试题/Android/Activity的启动流程.md)
     * [ANR](Some面试题/Android/ANR.md)
@@ -83,3 +85,4 @@
 * [模拟](Some面试题/模拟/README.md)
     * [模拟1](Some面试题/模拟/模拟1.md)
     * [模拟2](Some面试题/模拟/模拟2.md)
+    * [模拟3](Some面试题/模拟/模拟3.md)
