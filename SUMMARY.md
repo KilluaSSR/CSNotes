@@ -69,6 +69,7 @@
     * [Framework](Some面试题/Android/Framework/Framework.md)
         * [系统架构](Some面试题/Android/Framework/系统架构.md)
     * [基础](Some面试题/Android/基础.md)
+    * [比基础难一点](Some面试题/Android/比基础难一点.md)
     * [Activity的启动流程](Some面试题/Android/Activity的启动流程.md)
     * [ANR](Some面试题/Android/ANR.md)
     * [Handler](Some面试题/Android/Handler.md)
