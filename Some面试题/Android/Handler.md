@@ -88,7 +88,7 @@ Looper.loop();  // 开始消息循环
 - 不同线程的Handler发送的消息都会进入同一个MessageQueue
 - Looper在自己的线程中处理消息，实现线程切换
 
-## 面试常考问题
+## Q & A Time!
 
 ### 1. Handler内存泄漏问题
 **问题**：为什么Handler会造成内存泄漏？

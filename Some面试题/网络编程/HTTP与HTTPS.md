@@ -37,6 +37,7 @@
 - **常见算法**：RSA、ECDSA
 
 #### 混合加密（HTTPS采用）
+
 - 用非对称加密传输对称加密的密钥
 - 用对称加密传输具体数据
 - 兼顾安全性和效率
@@ -45,7 +46,7 @@
 
 ### 完整SSL/TLS握手流程
 
-#### 第一阶段：协商加密算法
+#### 第一阶段：协商加密算法                                                                                           
 1. **ClientHello**
    - 客户端发送支持的TLS版本
    - 支持的加密套件列表（密码套件）
@@ -119,6 +120,7 @@ Master Secret = PRF(Pre-Master Secret, "master secret",
 ## HTTPS连接机制
 
 ### 连接建立过程
+
 1. **DNS解析**：将域名解析为IP地址
 2. **TCP三次握手**：建立TCP连接（80端口→443端口）
 3. **TLS握手**：建立安全连接（上述13步）
@@ -132,6 +134,7 @@ Master Secret = PRF(Pre-Master Secret, "master secret",
 - 在HTTPS中同样适用
 
 #### TLS Session Resumption
+
 1. **Session ID机制**
    - 服务器缓存会话信息
    - 客户端重连时发送Session ID
@@ -150,6 +153,7 @@ Master Secret = PRF(Pre-Master Secret, "master secret",
 ### 证书验证机制
 
 #### 证书链验证
+
 1. **根证书**：操作系统/浏览器内置的可信根证书
 2. **中间证书**：由根证书签发的中间CA证书
 3. **服务器证书**：由中间CA签发的网站证书
@@ -163,14 +167,14 @@ Master Secret = PRF(Pre-Master Secret, "master secret",
 
 ## HTTP vs HTTPS 核心区别
 
-| 方面 | HTTP | HTTPS |
-|------|------|--------|
-| 安全性 | 明文传输，易被窃听 | 加密传输，安全性高 |
-| 端口 | 80 | 443 |
-| 证书 | 不需要 | 需要CA证书 |
-| 速度 | 快（3个包建立连接） | 慢（3个TCP包+最多13个TLS包） |
-| 成本 | 低 | 高（证书费用+服务器资源） |
-| SEO | 一般 | 搜索引擎优先收录 |
+| 方面  | HTTP       | HTTPS               |
+| --- | ---------- | ------------------- |
+| 安全性 | 明文传输，易被窃听  | 加密传输，安全性高           |
+| 端口  | 80         | 443                 |
+| 证书  | 不需要        | 需要CA证书              |
+| 速度  | 快（3个包建立连接） | 慢（3个TCP包+最多13个TLS包） |
+| 成本  | 低          | 高（证书费用+服务器资源）       |
+| SEO | 一般         | 搜索引擎优先收录            |
 
 ## GET vs POST 区别
 
@@ -187,9 +191,10 @@ Master Secret = PRF(Pre-Master Secret, "master secret",
 - **HTTP规范**：定义了不同的语义和使用场景
 - **浏览器实现**：浏览器对两者有不同的处理方式
 
-## 面试常考点
+## Q & A Time!
 
 ### 1. HTTPS如何防止中间人攻击？
+
 - **数字证书验证**：确保服务器身份真实性
 - **公钥加密**：防止密钥在传输过程中被窃取
 - **数字签名**：防止证书被伪造
@@ -202,6 +207,7 @@ Master Secret = PRF(Pre-Master Secret, "master secret",
 - **密钥协商**：复杂的密钥交换过程
 
 ### 3. HTTPS的性能优化方案
+
 - **Session Resumption**：复用会话减少握手
 - **OCSP Stapling**：服务器预先获取证书状态
 - **HTTP/2**：多路复用提高效率

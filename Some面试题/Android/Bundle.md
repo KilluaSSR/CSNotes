@@ -10,6 +10,7 @@ public final class Bundle extends BaseBundle implements Cloneable, Parcelable
 ```
 
 ### 1.2 Bundle的作用
+
 - **Activity间数据传递**：通过Intent携带Bundle传递数据
 - **Fragment参数传递**：通过setArguments()方法传递参数
 - **状态保存**：在onSaveInstanceState()中保存Activity/Fragment状态
