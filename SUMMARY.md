@@ -11,14 +11,19 @@
 * [运输层](计网/运输层.md)
 
 ## Android
-* [基础](Some面试题/Android/基础.md)
-* [比基础难一点](Some面试题/Android/比基础难一点.md)
-* [Activity的启动流程](Some面试题/Android/Activity的启动流程.md)
-* [ANR](Some面试题/Android/ANR.md)
-* [Handler](Some面试题/Android/Handler.md)
-* [MVVM](Some面试题/Android/MVVM.md)
-* [内存泄漏](Some面试题/Android/内存泄漏.md)
-* [数据流](Some面试题/Android/数据流.md)
+* [基础](Android/基础.md)
+* [Activity的启动流程](Android/Activity的启动流程.md)
+* [为什么不能在 ViewModel 里传入Context](Android/为什么不能在ViewModel里传入Context.md)
+* [ANR](Android/ANR.md)
+* [Handler](Android/Handler.md)
+* [MVVM](Android/MVVM.md)
+* [内存泄漏](Android/内存泄漏.md)
+* [数据流](Android/数据流.md)
+* [Bundle](Android/Bundle.md)
+* [JVM](Android/JVM.md)
+* [NDK](Android/NDK.md)
+* [Serializable和Parcelable](Android/Serializable和Parcelable.md)
+
 
 ## 地球人都能看懂的计算机基础知识
 * [外星人也能](计算机基础知识/nothing.md)

@@ -88,6 +88,27 @@ Looper.loop();  // 开始消息循环
 - 不同线程的Handler发送的消息都会进入同一个MessageQueue
 - Looper在自己的线程中处理消息，实现线程切换
 
+
+### Handler 机制的底层实现
+
+Handler 机制的底层实现主要涉及到 **Linux 管道 (Pipe)** 和 **epoll 机制**。
+
+1. **`MessageQueue` 的阻塞与唤醒：**
+    
+    - 当 `MessageQueue` 中没有消息时，`Looper` 调用 `MessageQueue.next()` 方法会使其进入**阻塞状态**。
+    - 这个阻塞的底层是通过 `nativePollOnce()` 方法实现的，它利用了 Linux 的 **`epoll_wait`** 系统调用。`epoll_wait` 允许在一个文件描述符上等待事件（例如管道的可读事件）。
+    - `MessageQueue` 内部维护了一对管道（匿名管道），当有新的消息被加入到 `MessageQueue` 时，会向管道的写入端写入一个字节的数据。
+    - 这个写入操作会触发管道的可读事件，从而唤醒在 `epoll_wait` 上等待的 `Looper`，使其从阻塞状态中恢复，继续从 `MessageQueue` 中取出消息。
+2. **线程间通信：**
+    
+    - `Handler.sendMessage()` 将 `Message` 添加到目标 `MessageQueue`。
+    - 如果是跨线程发送，本质上就是将 `Message` 对象从发送线程的内存空间传递到接收线程的 `MessageQueue` 中。
+    - 虽然涉及到跨线程操作，但由于 `MessageQueue` 的内部操作（如添加消息、唤醒 Looper）是**线程安全**的（通过 `synchronized` 块或 `Lock`），所以保证了消息的正确传递。
+3. **主线程的特殊性：**
+    
+    - 主线程 (UI 线程) 的 `Looper` 是由系统自动创建和启动的，因此它总是在运行。
+    - 主线程的 `MessageQueue` 永远不会为空，因为它会周期性地接收到系统消息（例如刷新 UI 的 `VSYNC` 信号），所以它不会像子线程那样长期阻塞而导致 ANR (除非执行耗时操作)。
+
 ## Q & A Time!
 
 ### 1. Handler内存泄漏问题
