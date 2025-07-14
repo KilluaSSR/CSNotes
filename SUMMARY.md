@@ -23,7 +23,7 @@
 * [JVM](Android/JVM.md)
 * [NDK](Android/NDK.md)
 * [Serializable和Parcelable](Android/Serializable和Parcelable.md)
-
+* [Composable的副作用](Android/Composable的副作用.md)
 
 ## 地球人都能看懂的计算机基础知识
 * [外星人也能](计算机基础知识/nothing.md)
